@@ -116,7 +116,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Support
 - Report issues via the [GitHub Issue Tracker](https://github.com/Auth0r-C0dez/Caption_generator/issues).
-- For further assistance, contact the maintainer at [your-email@example.com].
+- For further assistance, contact the maintainer at [kafirana1507@gmail.com].
 
 ## FAQ
 
