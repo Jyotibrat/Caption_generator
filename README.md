@@ -28,7 +28,7 @@ This project is written in Python and is open for contributions.
    ```
 2. Install the dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install gradio
    ```
 
 ## Usage
