@@ -43,7 +43,7 @@ This project is written in Python and is open for contributions.
 ## Examples
 
 ### Input Image
-![Input Example](#)
+![Input Example](https://imgur.com/gallery/group-of-people-sitting-around-table-with-laptops-UigRPPR)
 
 ### Generated Caption
 > "A group of people sitting around a table with laptops."
