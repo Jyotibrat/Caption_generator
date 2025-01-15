@@ -1,5 +1,7 @@
 # Caption Generator
 
+This project is registered as a open source project in the Android Club Winter of Code (AcWoc) 24' event conducted by the Android Club of VIT Bhopal University.
+
 ## Overview
 The **Caption Generator** project is an open-source tool that uses image recognition and caption generation to provide meaningful descriptions for images. It features a user-friendly interface built with Gradio, allowing users to upload an image and receive an auto-generated caption.
 
