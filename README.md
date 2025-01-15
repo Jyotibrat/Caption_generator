@@ -11,13 +11,22 @@ This project is written in Python and is open for contributions.
 - **Gradio Interface**: An intuitive web-based UI for easy interaction.
 - **Customizable**: Modular architecture to extend and adapt functionality.
 
-## Demo
-- [Live Demo](#) (Coming soon)
-- Example screenshot:
-  ![Example Output](#)
+## Technical Details
 
-## Repository
-[GitHub Repository](https://github.com/Auth0r-C0dez/Caption_generator)
+### Technologies Used
+- **Python**
+- **Gradio** for the user interface
+- **TensorFlow**/**PyTorch** for the backend models
+- **OpenCV** for image processing (if applicable)
+
+### System Architecture
+- The image is uploaded via the Gradio interface.
+- The backend processes the image and generates a caption using a pretrained model.
+- The caption is displayed in the Gradio interface.
+
+### Model Details
+- Uses pretrained models for image captioning (e.g., ResNet + Transformer architecture).
+- Open for customization with other models.
 
 ## Installation
 
@@ -43,7 +52,7 @@ This project is written in Python and is open for contributions.
 ## Examples
 
 ### Input Image
-![Input Example](https://imgur.com/gallery/group-of-people-sitting-around-table-with-laptops-UigRPPR)
+<img src="assets/images/A group of people sitting around a table with laptops.jpg" alt="Example Image" width="300" />
 
 ### Generated Caption
 > "A group of people sitting around a table with laptops."
@@ -81,39 +90,6 @@ Contributions are welcome! Please follow these steps:
 - Document your code where necessary.
 - Include tests for new features or bug fixes.
 
-## Technical Details
-
-### Technologies Used
-- **Python**
-- **Gradio** for the user interface
-- **TensorFlow**/**PyTorch** for the backend models
-- **OpenCV** for image processing (if applicable)
-
-### System Architecture
-- The image is uploaded via the Gradio interface.
-- The backend processes the image and generates a caption using a pretrained model.
-- The caption is displayed in the Gradio interface.
-
-### Model Details
-- Uses pretrained models for image captioning (e.g., ResNet + Transformer architecture).
-- Open for customization with other models.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgments
-- Inspiration from existing caption generation research.
-- Libraries and datasets used in this project.
-
-## Known Issues and Limitations
-- Limited to pretrained models used.
-- Performance may vary based on image quality and content.
-
-## Future Enhancements
-- Support for multiple languages.
-- Batch image processing.
-- Hosting the application for public access.
-
 ## Support
 - Report issues via the [GitHub Issue Tracker](https://github.com/Auth0r-C0dez/Caption_generator/issues).
 - For further assistance, contact the maintainer at [kafirana1507@gmail.com].
@@ -128,5 +104,8 @@ A: Yes, the project is modular and allows integration of custom models.
 
 ## Attribution
 Created by [Auth0r-C0dez](https://github.com/Auth0r-C0dez).
+
+## License
+This project is licensed under the [MIT License](LICENSE).
 
 # HaPPy Coding
