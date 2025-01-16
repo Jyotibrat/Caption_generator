@@ -11,9 +11,9 @@ model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-capt
 
 def add_aesthetic_flair(description):
     # Keywords to identify specific styles for the caption
-    nature_keywords = ["mountain", "sea", "sky", "ocean", "nature", "forest", "beach"]
-    city_keywords = ["city", "urban", "street", "lights", "buildings", "skyscrapers"]
-    people_keywords = ["person", "people", "portrait", "smiling", "group", "friends", "family"]
+    nature_keywords = ["mountain", "sea", "sky", "ocean", "nature", "forest", "beach", "trees", "jungle", "wildlife", "wilderness", "river", "canyon", "hills", "valley", "waterfall", "lake"]
+    city_keywords = ["city", "urban", "street", "lights", "buildings", "skyscrapers", "cityscape", "skyline","construction", "metropolis", "traffic", "subway", "metro","plaza","market","billboards","nightlife","tower"]
+    people_keywords = ["person", "people", "portrait", "smiling", "group", "friends", "family","crowd","community","society","gathering","celebration","adults","children","elderly","men","women","employees","volunteer","friendship"]
     
     # Defining a list of possible emotional or aesthetic phrases
     aesthetic_tones = [
@@ -24,7 +24,27 @@ def add_aesthetic_flair(description):
         "an unforgettable experience", 
         "whispers of serenity", 
         "an adventure in every frame", 
-        "a snapshot of pure bliss"
+        "a snapshot of pure bliss",
+        "faded photo of a classic diner",
+        "single plant in a white pot",
+        "cozy living room with woven rugs",
+        "neon lights outside an arcade",
+        "black-and-white portrait in soft light",
+        "couple walking through a flower-filled park",
+        "dimly lit room with candlelight",
+        "graffiti-covered walls in an abandoned warehouse",
+        "sleek kitchen with exposed brick",
+        "woman on a rooftop at sunset",
+        "soft pink bedroom with mint green accents",
+        "neon-lit city skyline at night",
+        "mist rolling through a quiet forest",
+        "wooden cabin with a roaring fireplace",
+        "floating island with waterfalls",
+        "busy street with neon signs and traffic",
+        "dew-covered leaves in the forest",
+        "swirl of colors and shapes in motion",
+        "balloons flying in a sunny park",
+        "marble foyer with crystal chandeliers"
     ]
     
     # Identify the tone based on image description
