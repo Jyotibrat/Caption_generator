@@ -83,31 +83,45 @@ def add_aesthetic_flair(description):
 # Function to generate the base caption from the BLIP model
 def generate_caption(image):
     inputs = processor(images=image, return_tensors="pt")
-    outputs = model.generate(**inputs)
+    outputs = model.generate(**inputs, num_beams=5, max_length=50)
     base_caption = processor.decode(outputs[0], skip_special_tokens=True)
-    
- 
     full_caption = add_aesthetic_flair(base_caption)
-    
     return full_caption
 
-def caption_image(image):
+def answer_question(image, question):
     """
-    Takes a PIL Image input and returns a customized aesthetic caption.
+    Answers a question based on the given image.
+    """
+    inputs = processor(images=image, text=question, return_tensors="pt")
+    outputs = model.generate(**inputs, num_beams=5, max_length=50)
+    answer = processor.decode(outputs[0], skip_special_tokens=True)
+    return answer[len(question):]
+
+
+def handle_request(image, question):
+    """
+    Handles the user's request for either captioning or question answering.
     """
     try:
-        caption = generate_caption(image)
-        return caption
+        if question.strip():  
+            answer = answer_question(image, question)
+            return f"Question: {question}\nAnswer: {answer}"
+        else: 
+            caption = generate_caption(image)
+            return caption
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
 # Gradio interface setup
 iface = gr.Interface(
-    fn=caption_image,
-    inputs=gr.Image(type="pil"),
+    fn=handle_request,
+    inputs=[
+        gr.Image(type="pil", label="Upload an Image"), 
+        gr.Textbox(lines=2, placeholder="Ask a question about the image (optional)", label="Question (Optional)"), 
+    ],
     outputs="text",
-    title="Aesthetic Image Captioning",
-    description="Upload an image to generate a customized aesthetic caption for your Instagram post."
+    title="Aesthetic Image Captioning with Question Answering",
+    description="Upload an image to generate an aesthetic caption or ask a question about the image."
 )
 
 iface.launch()
