@@ -61,6 +61,10 @@ This project is written in Python and is open for contributions.
 ### Generated Caption
 > "A group of people sitting around a table with laptops."
 
+### Generated Answer
+> Question: what is happening in this image?
+> Answer: they are sitting
+
 ## What i look for improvement ??
 The project allows customization to improve its functionality:
 
