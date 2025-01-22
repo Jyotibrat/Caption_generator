@@ -62,8 +62,7 @@ This project is written in Python and is open for contributions.
 > "A group of people sitting around a table with laptops."
 
 ### Generated Answer
-> Question: what is happening in this image?
-<br>
+> Question: what is happening in this image?<br>
 > Answer: they are sitting
 
 ## What i look for improvement ??
