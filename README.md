@@ -3,7 +3,7 @@
 This project is registered as a open source project in the Android Club Winter of Code (AcWoc) 24' event conducted by the Android Club of VIT Bhopal University.
 
 ## Overview
-The **Caption Generator** project is an open-source tool that uses image recognition and caption generation to provide meaningful descriptions for images. It features a user-friendly interface built with Gradio, allowing users to upload an image and receive an auto-generated caption.
+The **Caption Generator** project is an open-source tool that uses image recognition and caption generation to provide meaningful descriptions for images. It features a user-friendly interface built with Gradio, allowing users to upload an image and receive an auto-generated caption and also we can ask the the question about the image .
 
 This project is written in Python and is open for contributions.
 
@@ -12,6 +12,7 @@ This project is written in Python and is open for contributions.
 - **Caption Generation**: Provides descriptive captions for uploaded images.
 - **Gradio Interface**: An intuitive web-based UI for easy interaction.
 - **Customizable**: Modular architecture to extend and adapt functionality.
+- **Question Answering**: Added an additional input field for the user to enter a question.
 
 ## Technical Details
 
@@ -25,6 +26,7 @@ This project is written in Python and is open for contributions.
 - The image is uploaded via the Gradio interface.
 - The backend processes the image and generates a caption using a pretrained model.
 - The caption is displayed in the Gradio interface.
+- A Textbox allows the user to input a question about the image.
 
 ### Model Details
 - Uses pretrained models for image captioning (e.g., ResNet + Transformer architecture).
