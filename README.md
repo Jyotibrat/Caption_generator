@@ -63,6 +63,7 @@ This project is written in Python and is open for contributions.
 
 ### Generated Answer
 > Question: what is happening in this image?
+/n
 > Answer: they are sitting
 
 ## What i look for improvement ??
