@@ -144,6 +144,7 @@ def add_aesthetic_flair(description):
     return final_caption
 
 def generate_caption(image):
+
     try:
         # Enhanced caption generation with multiple attempts
         inputs = processor(images=image, return_tensors="pt")
@@ -169,27 +170,47 @@ def generate_caption(image):
     except Exception as e:
         return f"Caption generation failed: {str(e)}"
 
-def caption_image(image):
+def answer_question(image, question):
     """
+    Answers a question based on the given image.
+    """
+    inputs = processor(images=image, text=question, return_tensors="pt")
+    outputs = model.generate(**inputs, num_beams=5, max_length=50)
+    answer = processor.decode(outputs[0], skip_special_tokens=True)
+    return answer[len(question):]
+
+
+def handle_request(image, question):
+    """
+
+
     Enhanced image captioning with robust error handling
+
     """
     if image is None:
         return "Please provide a valid image"
         
     try:
-        caption = generate_caption(image)
-        return caption
+        if question.strip():  
+            answer = answer_question(image, question)
+            return f"Question: {question}\nAnswer: {answer}"
+        else: 
+            caption = generate_caption(image)
+            return caption
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
 # Enhanced Gradio interface with error handling
 iface = gr.Interface(
+
+
     fn=caption_image,
     inputs=gr.Image(type="pil", label="📸 Upload your image"),
     outputs=gr.Textbox(label="✨ Generated Caption"),
     title="🎨 AI-Powered Creative Caption Generator",
     description="Transform your images into engaging stories with location, weather, and multi-language support.",
     theme="default"
+
 )
 
 # Launch the interface and open in browser
