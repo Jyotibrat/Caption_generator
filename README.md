@@ -13,6 +13,7 @@ This project is written in Python and is open for contributions.
 - **Gradio Interface**: An intuitive web-based UI for easy interaction.
 - **Customizable**: Modular architecture to extend and adapt functionality.
 - **Question Answering**: Added an additional input field for the user to enter a question.
+- **object detection**: Integration with more object detection models for broader recognition.
 
 ## Technical Details
 
@@ -21,12 +22,14 @@ This project is written in Python and is open for contributions.
 - **Gradio** for the user interface
 - **TensorFlow**/**PyTorch** for the backend models
 - **OpenCV** for image processing (if applicable)
+- **torch**
 
 ### System Architecture
 - The image is uploaded via the Gradio interface.
 - The backend processes the image and generates a caption using a pretrained model.
 - The caption is displayed in the Gradio interface.
 - A Textbox allows the user to input a question about the image.
+- The DETR model detects objects in the uploaded image and draws bounding boxes around them.
 
 ### Model Details
 - Uses pretrained models for image captioning (e.g., ResNet + Transformer architecture).
