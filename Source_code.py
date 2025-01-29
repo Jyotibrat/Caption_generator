@@ -1,6 +1,5 @@
-#creqd lib
 import gradio as gr
-from transformers import BlipProcessor, BlipForConditionalGeneration
+from transformers import BlipProcessor, BlipForConditionalGeneration, DetrImageProcessor, DetrForObjectDetection
 from PIL import Image
 import random
 import emoji
@@ -13,6 +12,8 @@ import socket
 import os
 from dotenv import load_dotenv
 import webbrowser
+import torch
+from PIL import ImageDraw
 
 # Load environment variables
 load_dotenv()
@@ -21,9 +22,34 @@ load_dotenv()
 try:
     processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
     model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
+    od_processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50")
+    od_model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50")
 except Exception as e:
     print(f"Error loading models: {str(e)}")
     raise SystemExit("Required models could not be loaded")
+
+def detect_objects(image):
+    inputs = od_processor(images=image, return_tensors="pt")
+    outputs = od_model(**inputs)
+    target_sizes = torch.tensor([image.size[::-1]])  
+    results = od_processor.post_process_object_detection(outputs, target_sizes=target_sizes)[0]
+
+    # Apply threshold manually
+    valid_indices = results["scores"] > 0.7
+    results = {k: v[valid_indices] for k, v in results.items()}
+
+    draw = ImageDraw.Draw(image)
+    detected_objects = []
+    
+    for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
+        box = [round(i, 2) for i in box.tolist()]
+        label_name = od_model.config.id2label[label.item()]
+        detected_objects.append(label_name)
+        draw.rectangle(box, outline="red", width=3)
+        draw.text((box[0], box[1]), f"{label_name} ({score:.2f})", fill="red")
+    
+    return  detected_objects
+
 
 def get_location_weather():
     """Get current location and weather with enhanced error handling"""
@@ -143,6 +169,8 @@ def add_aesthetic_flair(description):
     
     return final_caption
 
+
+
 def generate_caption(image):
 
     try:
@@ -180,7 +208,7 @@ def answer_question(image, question):
     return answer[len(question):]
 
 
-def handle_request(image, question):
+def handle_request(image, question, mode):
     """
 
 
@@ -191,7 +219,11 @@ def handle_request(image, question):
         return "Please provide a valid image"
         
     try:
-        if question.strip():  
+        if mode == "Object Detection":
+            detected_objects = detect_objects(image.copy())  # Work on a copy to avoid modifying original
+            return  f"Detected Objects: {', '.join(detected_objects)}"
+        if question:
+            question=question.strip()  
             answer = answer_question(image, question)
             return f"Question: {question}\nAnswer: {answer}"
         else: 
@@ -200,16 +232,19 @@ def handle_request(image, question):
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-# Enhanced Gradio interface with error handling
+# Gradio interface with an option for Object Detection
 iface = gr.Interface(
-
-
-    fn=caption_image,
-    inputs=gr.Image(type="pil", label="📸 Upload your image"),
-    outputs=gr.Textbox(label="✨ Generated Caption"),
-    title="🎨 AI-Powered Creative Caption Generator",
-    description="Transform your images into engaging stories with location, weather, and multi-language support.",
-    theme="default"
+    fn=handle_request,
+    inputs=[
+        gr.Image(type="pil", label="📸 Upload your image"),
+        gr.Textbox(label="❓ Ask a question (Optional)"),
+        gr.Radio(["Caption Generation", "Object Detection"], label="Select Mode", value="Caption Generation"),
+    ],
+    outputs=[
+        gr.Textbox(label="✨ Output"),
+    ],
+    title="🎨 AI-Powered Creative Caption & Object Detection",
+    description="Upload an image to generate captions, answer questions, or detect objects.",
 
 )
 
