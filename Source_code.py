@@ -115,7 +115,95 @@ def add_aesthetic_flair(description):
         "stories written in light",
         "memories carved in time",
         "where imagination roams free",
-        "a canvas of emotions"
+        "a canvas of emotions",
+        "a little sunshine goes a long way",
+        "breathe in the positivity, exhale the doubt",
+        "a grateful heart makes every morning brighter",
+        "let the morning set the tone for you",
+        "be a voice, not an echo",
+        "progress, not prefection",
+        "trust the process",
+        "dream big, hustle harder",
+        "hard work beats talent when talent doesn't work hard",
+        "move forward even if in small steps",
+        "focus on the good, and the good gets better",
+        "stay close to people who feel like sunshine",
+        "collect memories, not things.",
+        "not all who wander are lost",
+        "take only memories, leave only footprints",
+        "life begins at the end of your comfort zone",
+        "the world is too big to stay in one place",
+        "not all who wander are lost",
+        "We are blessed and cursed, same things makes us laugh, make us cry.",
+        "discipline beats motivation everytime",
+        "sunlight spills like golden ink, writing dreams upon the day",
+        "morning whispers secrets only the early birds hear",
+        "the sky blushes at dawnn, kissed by the rising sun",
+        "raindrops are the earth's way to sing a lullaby",
+        "ki kori aso kela, uth baal! success kori bo ase",
+        "the horizon holds hands with the sea, where dreams and reality meet",
+        "clouds drift like unspoken thoughts acroos an endless sky",
+        "leaves dance in the wind, whispering stories of old",
+        "a single moment of wonder can rewrite a lifetime of doubt",
+        "the ocean hums lullabies only the heart can understand",
+        "time tiptoes through the day, leaving memories in its wake",
+        "shadows stretch like silent echoes of the past",
+        "steel bends, kingdoms fall, but a true heart never bows",
+        "courage is a whisper that grows into a roar",
+        "today is your day, kela own it like its yours",
+        "not all who wander are lost, some are simply dancing",
+        "tomorrow is a promise wrapped in the golden light of dawn",
+        "life is a melody, best sung with an open heart",
+        "even stars are born form the darkness",
+        "the softest words can leave the deepest echoes",
+        "hope is the feather that carries the soul through stroms",
+        "the road less traveled hums with untold stories",
+        "the past is a shadow that only light can outgrow",
+        "even the smallest flame can dance against the dark",
+        "a warrior’s scars are but ink on the pages of legend",
+        "the storm bows before those who dare to dance in its fury",
+        "blades may shatter, shields may break, but courage remains unswayed",
+        "glory is not given, it is seized in the heart of battle",
+        "legends are not written in ink, but in the echoes of deeds remembered",
+        "stand tall, for the shadows of doubt dare not linger where courage stands strong",
+        "a promise lost in time still lingers in the wind, waiting to be found",
+        "a single wish upon a falling star can rewrite the fate of a thousand lifetimes",
+        "stars are just echoes of wishes too bold to be forgotten",
+        "the night holds secrets only the enchanted dare to hear",
+        "in the hands of a dreamer, even the ordinary becomes enchanted",
+        "yesterday’s whispers fade, but the dawn sings of second chances",
+        "some roads lead back to where we left our dreams behind",
+        "every sunrise is proof that endings are just beginnings in disguise",
+        "not all forgotten words are lost; some bloom again in time’s embrace",
+        "the ashes of my past pave the path to my rebirth",
+        "even the most shattered soul can rise with the dawn",
+        "a journey does not end where the road breaks, it begins anew",
+        "shadows of loss cannot hold back a soul destined to rise",
+        "even the stars envy a soul that knows its worth",
+        "the only limit is the one not yet shattered",
+        "a mind unchained can conquer any destiny",
+        "there is no rival greater than the fear of one's own greatness",
+        "the echoes of sorrow are drowned in the laughter of new beginnings",
+        "no shadow lingers forever where hope dares to shine",
+        "let your growth be the gift that nourishes those who stand by you",
+        "grow not just for yourself, but for those who bloom beside you",
+        "rise, so that those who love you never have to watch you fall",
+        "become the person your loved ones already believe you to be",
+        "the strongest souls are shaped by love, not just ambition",
+        "even the darkest forest glows where fairy dust lingers",
+        "when friends gather, every hour is golden",
+        "let the music play and joy overflow",
+        "good vibes, great company, and memories that last forever",
+        "a toast to friendship, laughter, and the magic of tonight",
+        "laughter spills like golden confetti, dancing in the air of joy",
+        "a night of laughter, a dance of souls, a memory forever to behold",
+        "let the music play, let worries fade",
+        "good vibes, great friends, and a night that never ends",
+        "Making memories, one song at a time.",
+        "the map is just the beginning, the journey writes the story",
+        "the road whispers, the wind calls",
+        "every sunset is a promise of a new adventure",
+
     ]
     
     # Get current time and location context
@@ -270,14 +358,6 @@ iface = gr.Interface(
 # Launch the interface and open in browser
 server_port = 7860  # Default Gradio port
 webbrowser.open(f'http://localhost:{server_port}')
-iface.launch(server_name="0.0.0.0", server_port=server_port, share=True)
 
-
-
-
-
-
-
-
-
+iface.launch(server_name="0.0.0.0", server_port=server_port, share=False)
 
