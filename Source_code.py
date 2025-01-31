@@ -1,5 +1,5 @@
 import gradio as gr
-from transformers import BlipProcessor, BlipForConditionalGeneration, DetrImageProcessor, DetrForObjectDetection
+from transformers import BlipProcessor, BlipForConditionalGeneration, DetrImageProcessor, DetrForObjectDetection,TrOCRProcessor, VisionEncoderDecoderModel
 from PIL import Image
 import random
 import emoji
@@ -14,6 +14,10 @@ from dotenv import load_dotenv
 import webbrowser
 import torch
 from PIL import ImageDraw
+import pytesseract
+import cv2
+import easyocr
+import numpy as np
 
 # Load environment variables
 load_dotenv()
@@ -24,6 +28,8 @@ try:
     model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
     od_processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50")
     od_model = DetrForObjectDetection.from_pretrained("facebook/detr-resnet-50")
+
+
 except Exception as e:
     print(f"Error loading models: {str(e)}")
     raise SystemExit("Required models could not be loaded")
@@ -49,6 +55,15 @@ def detect_objects(image):
         draw.text((box[0], box[1]), f"{label_name} ({score:.2f})", fill="red")
     
     return  detected_objects
+
+
+
+def extract_text_with_preprocessing(image):
+        reader = easyocr.Reader(['en'])  # Initialize with English
+        image_cv = np.array(image)
+        text = reader.readtext(image_cv)
+        extracted_text = ' '.join([res[1] for res in text])
+        return extracted_text
 
 
 def get_location_weather():
@@ -215,20 +230,21 @@ def handle_request(image, question, mode):
     Enhanced image captioning with robust error handling
 
     """
+    Extract_data=extract_text_with_preprocessing(image)
     if image is None:
-        return "Please provide a valid image"
+        return "Please provide a valid image",""
         
     try:
         if mode == "Object Detection":
             detected_objects = detect_objects(image.copy())  # Work on a copy to avoid modifying original
-            return  f"Detected Objects: {', '.join(detected_objects)}"
+            return  f"Detected Objects: {', '.join(detected_objects)}",Extract_data
         if question:
             question=question.strip()  
             answer = answer_question(image, question)
-            return f"Question: {question}\nAnswer: {answer}"
+            return f"Question: {question}\nAnswer: {answer}",Extract_data
         else: 
             caption = generate_caption(image)
-            return caption
+            return caption,Extract_data
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
@@ -242,13 +258,26 @@ iface = gr.Interface(
     ],
     outputs=[
         gr.Textbox(label="✨ Output"),
+        gr.Textbox(label="✨ Text from Image")
     ],
     title="🎨 AI-Powered Creative Caption & Object Detection",
     description="Upload an image to generate captions, answer questions, or detect objects.",
 
 )
 
+
+
 # Launch the interface and open in browser
 server_port = 7860  # Default Gradio port
 webbrowser.open(f'http://localhost:{server_port}')
-iface.launch(server_name="0.0.0.0", server_port=server_port, share=False)
+iface.launch(server_name="0.0.0.0", server_port=server_port, share=True)
+
+
+
+
+
+
+
+
+
+

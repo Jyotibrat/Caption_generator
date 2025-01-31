@@ -14,6 +14,7 @@ This project is written in Python and is open for contributions.
 - **Customizable**: Modular architecture to extend and adapt functionality.
 - **Question Answering**: Added an additional input field for the user to enter a question.
 - **object detection**: Integration with more object detection models for broader recognition.
+- **Character Recognition**:  extract text from given images
 
 ## Technical Details
 
@@ -23,6 +24,7 @@ This project is written in Python and is open for contributions.
 - **TensorFlow**/**PyTorch** for the backend models
 - **OpenCV** for image processing (if applicable)
 - **torch**
+- **easyocr** for text extraction
 
 ### System Architecture
 - The image is uploaded via the Gradio interface.
@@ -30,6 +32,7 @@ This project is written in Python and is open for contributions.
 - The caption is displayed in the Gradio interface.
 - A Textbox allows the user to input a question about the image.
 - The DETR model detects objects in the uploaded image and draws bounding boxes around them.
+- EasyOCR is another popular OCR library that supports multiple languages and can handle both printed and handwritten text.
 
 ### Model Details
 - Uses pretrained models for image captioning (e.g., ResNet + Transformer architecture).
